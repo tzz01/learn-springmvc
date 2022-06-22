@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myDataSourceConfig" class="ioc.xml_config.MyDataSourceConfig" />
+
+    <bean id="myDataSource" class="ioc.xml_config.MyDataSource">
+        <property name="myDataSourceConfig" ref="myDataSourceConfig" />
+    </bean>
+
+    <bean id="bookService" class="ioc.xml_config.BookService">
+        <property name="myDataSource" ref="myDataSource" />
+    </bean>
+
+    <bean id="userService" class="ioc.xml_config.UserService">
+        <property name="myDataSource" ref="myDataSource" />
+        <property name="bookService" ref="bookService" />
+    </bean>
+
+</beans>
